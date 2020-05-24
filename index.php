@@ -1,7 +1,7 @@
 <?php
 $is_auth = rand(0, 1);
 
-$user_name = ''; // укажите здесь ваше имя
+$user_name = 'Александр'; // укажите здесь ваше имя
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -41,7 +41,9 @@ $user_name = ''; // укажите здесь ваше имя
         </form>
         <div class="header__nav-wrapper">
             <!-- здесь должен быть PHP код, который показывает следующий тег по условию -->
-            <nav class="header__nav">
+            <?php if ($user_name == 1): ?>
+                <nav class="header__nav">
+            <?php endif;?>
                 <ul class="header__my-nav">
                     <li class="header__my-page header__my-page--popular">
                         <a class="header__page-link header__page-link--active" title="Популярный контент">
@@ -233,7 +235,7 @@ $user_name = ''; // укажите здесь ваше имя
                 <!--содержимое для поста-видео-->
                 <div class="post-video__block">
                     <div class="post-video__preview">
-                        <?=embed_youtube_cover(/* вставьте ссылку на видео */); ?>
+                        <?=embed_youtube_cover(/* вставьте ссылку на видео */); ?> 
                         <img src="img/coast-medium.jpg" alt="Превью к видео" width="360" height="188">
                     </div>
                     <a href="post-details.html" class="post-video__play-big button">
