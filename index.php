@@ -211,7 +211,7 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                 <!--содержимое для поста-цитаты-->
                 <blockquote>
                     <p>
-                        <?=Array[0]['Содержимое']?>
+                        <?=$Array[0]['Содержимое']?>
                     </p>
                     <cite>Неизвестный Автор</cite>
                 </blockquote>
@@ -224,10 +224,10 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                                 <img src="https://www.google.com/s2/favicons?domain=vitadental.ru" alt="Иконка">
                             </div>
                             <div class="post-link__info">
-                                <h3><?=Array[4]['Содержимое']?></h3>
+                                <h3><?=$Array[4]['Заголовок']?></h3>
                             </div>
                         </div>
-                        <span><!--здесь ссылка--></span>
+                        <span><?=$Array[4]['Содержимое']?></span>
                     </a>
                 </div>
 
