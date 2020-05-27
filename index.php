@@ -207,20 +207,27 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </div>
         <div class="popular__posts">
-            <?foreach($Article as $A):?>
+            <?php foreach($Array as $A):?>
             <article class="popular__post post">
                 <header class="post__header">
                     <h2><?=$A['Заголовок']?></h2>
                 </header>
                 <div class="post__main">
+                <?php if ($A['Тип'] == 'post-quote'):?>
+                    <q><cite><?=$A['Содержимое']?></cite></q>
+                <?php elseif ($A['Тип'] == 'post-text'):?>
                     <?=$A['Содержимое']?>
+                <?php elseif ($A['Тип'] == 'post-photo'):?>
+                    <img src = <?='img/'.$A['Содержимое']?>>
+                <?php elseif ($A['Тип'] == 'post-link'):?>
+                    <a href=<?='https://'.$A['Содержимое']?>><?=$A['Содержимое']?></a>
+                <?php endif;?>
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
-                                <?=$A['Аватар']?>
-                                <img class="post__author-avatar" src="img/" alt="Аватар пользователя">
+                                <img class="post__author-avatar" src=<?="img/".$A['Аватар']?> alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
                                 <b class="post__author-name"><?=$A['Имя пользователя']?></b>
@@ -251,7 +258,7 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                     </div>
                 </footer>
             </article>
-            <?endforeach?>
+            <?php endforeach;?>
         </div>
     </div>
 </section>
