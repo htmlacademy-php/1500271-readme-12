@@ -1,10 +1,42 @@
 <?php
 $is_auth = rand(0, 1);
-$Array = [['Заголовок'=> 'Цитата', 'Тип'=> 'post-quote', 'Содержимое'=> 'Мы в жизни любим только раз, а после ищем лишь похожих', 'Имя пользователя' => 'Лариса', 'Аватар' => 'userpic-larisa-small.jpg'], 
-['Заголовок'=> 'Игра престолов', 'Тип'=> 'post-text', 'Содержимое'=> 'Не могу дождаться начала финального сезона своего любимого сериала!', 'Имя пользователя' => 'Владик', 'Аватар' => 'userpic.jpg'],
-['Заголовок'=> 'Наконец, обработал фотки!', 'Тип'=> 'post-photo', 'Содержимое'=> 'rock-medium.jpg', 'Имя пользователя' => 'Виктор', 'Аватар' => 'userpic-mark.jpg'],
-['Заголовок'=> 'Моя мечта', 'Тип'=> 'post-photo', 'Содержимое'=> 'coast-medium.jpg', 'Имя пользователя' => 'Лариса', 'Аватар' => 'userpic-larisa-small.jpg'],
-['Заголовок'=> 'Лучшие курсы', 'Тип'=> 'post-link', 'Содержимое'=> 'www.htmlacademy.ru', 'Имя пользователя' => 'Владик', 'Аватар' => 'userpic.jpg']];
+$posts = [
+    [
+        'caption' => 'Цитата',
+        'type' => 'post-quote',
+        'content' => 'Мы в жизни любим только раз, а после ищем лишь похожих',
+        'user_name' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg'
+    ],
+    [
+        'caption' => 'Игра престолов',
+        'type' => 'post-text',
+        'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
+        'user_name' => 'Владик',
+        'avatar' => 'userpic.jpg'
+    ],
+    [
+        'caption' => 'Наконец, обработал фотки!',
+        'type' => 'post-photo',
+        'content' => 'rock-medium.jpg',
+        'user_name' => 'Виктор',
+        'avatar' => 'userpic-mark.jpg'
+    ],
+    [
+        'caption' => 'Моя мечта',
+        'type' => 'post-photo',
+        'content' => 'coast-medium.jpg',
+        'user_name' => 'Лариса',
+        'avatar' => 'userpic-larisa-small.jpg'
+    ],
+    [
+        'caption' => 'Лучшие курсы',
+        'type' => 'post-link',
+        'content' => 'www.htmlacademy.ru',
+        'user_name' => 'Владик',
+        'avatar' => 'userpic.jpg'
+    ]
+];
 $user_name = 'Александр'; // укажите здесь ваше имя
 ?>
 <!DOCTYPE html>
@@ -207,30 +239,30 @@ $user_name = 'Александр'; // укажите здесь ваше имя
             </div>
         </div>
         <div class="popular__posts">
-            <?php foreach($Array as $A):?>
-            <article class="popular__post post">
+            <?php foreach($posts as $post):?>
+            <article class=<?="popular__post post ".$post['type']?>>
                 <header class="post__header">
-                    <h2><?=$A['Заголовок']?></h2>
+                    <h2><?=$post['caption']?></h2>
                 </header>
                 <div class="post__main">
-                <?php if ($A['Тип'] == 'post-quote'):?>
-                    <q><cite><?=$A['Содержимое']?></cite></q>
-                <?php elseif ($A['Тип'] == 'post-text'):?>
-                    <?=$A['Содержимое']?>
-                <?php elseif ($A['Тип'] == 'post-photo'):?>
-                    <img src = <?='img/'.$A['Содержимое']?>>
-                <?php elseif ($A['Тип'] == 'post-link'):?>
-                    <a href=<?='https://'.$A['Содержимое']?>><?=$A['Содержимое']?></a>
+                <?php if ($post['type'] == 'post-quote'):?>
+                    <q><cite><?=$post['content']?></cite></q>
+                <?php elseif ($post['type'] == 'post-text'):?>
+                    <?=$post['content']?>
+                <?php elseif ($post['type'] == 'post-photo'):?>
+                    <img src = <?='img/'.$post['content']?>>
+                <?php elseif ($post['type'] == 'post-link'):?>
+                    <a href=<?='https://'.$post['content']?>><?=$post['content']?></a>
                 <?php endif;?>
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
-                                <img class="post__author-avatar" src=<?="img/".$A['Аватар']?> alt="Аватар пользователя">
+                                <img class="post__author-avatar" src=<?="img/".$post['avatar']?> alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
-                                <b class="post__author-name"><?=$A['Имя пользователя']?></b>
+                                <b class="post__author-name"><?=$post['user_name']?></b>
                                 <time class="post__time" datetime="">дата</time>
                             </div>
                         </a>
