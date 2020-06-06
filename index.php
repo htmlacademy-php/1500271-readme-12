@@ -1,5 +1,12 @@
 <?php
 $is_auth = rand(0, 1);
+/*function textcut($str, $len) {
+if (strlen($str) > $len) {
+    $arr_str = explode(' ', $str);
+    
+}
+};
+if */
 $posts = [
     [
         'caption' => 'Цитата',
@@ -240,30 +247,29 @@ $user_name = 'Александр'; // укажите здесь ваше имя
         </div>
         <div class="popular__posts">
             <?php foreach($posts as $post):?>
-            <article class=<?="popular__post post ".$post['type']?>>
+                <article class="popular__post post <?=$post['type']?>">
                 <header class="post__header">
-                    <h2><?=$post['caption']?></h2>
+                    <h2><a href="#"><?=$post['caption']?></a></h2>
                 </header>
                 <div class="post__main">
                 <?php if ($post['type'] == 'post-quote'):?>
-                    <q><cite><?=$post['content']?></cite></q>
-                <?php elseif ($post['type'] == 'post-text'):?>
-                    <?=$post['content']?>
-                <?php elseif ($post['type'] == 'post-photo'):?>
-                    <img src = <?='img/'.$post['content']?>>
-                <?php elseif ($post['type'] == 'post-link'):?>
-                    <a href=<?='https://'.$post['content']?>><?=$post['content']?></a>
-                <?php endif;?>
+                <div class="post__main">
+                    <blockquote>
+                        <p>
+                            <?=$post['content']?>
+                        </p>
+                    </blockquote>
                 </div>
                 <footer class="post__footer">
                     <div class="post__author">
                         <a class="post__author-link" href="#" title="Автор">
                             <div class="post__avatar-wrapper">
-                                <img class="post__author-avatar" src=<?="img/".$post['avatar']?> alt="Аватар пользователя">
+                                <img class="post__author-avatar" src=<?='img/'.$post['avatar']?>
+                                     alt="Аватар пользователя">
                             </div>
                             <div class="post__info">
                                 <b class="post__author-name"><?=$post['user_name']?></b>
-                                <time class="post__time" datetime="">дата</time>
+                                <time class="post__time" datetime="2019-03-30">Месяц назад</time>
                             </div>
                         </a>
                     </div>
@@ -273,22 +279,161 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                                 <svg class="post__indicator-icon" width="20" height="17">
                                     <use xlink:href="#icon-heart"></use>
                                 </svg>
-                                <svg class="post__indicator-icon post__indicator-icon--like-active" width="20" height="17">
+                                <svg class="post__indicator-icon post__indicator-icon--like-active" width="20"
+                                     height="17">
                                     <use xlink:href="#icon-heart-active"></use>
                                 </svg>
-                                <span>0</span>
+                                <span>250</span>
                                 <span class="visually-hidden">количество лайков</span>
                             </a>
                             <a class="post__indicator post__indicator--comments button" href="#" title="Комментарии">
                                 <svg class="post__indicator-icon" width="19" height="17">
                                     <use xlink:href="#icon-comment"></use>
                                 </svg>
-                                <span>0</span>
+                                <span>25</span>
                                 <span class="visually-hidden">количество комментариев</span>
                             </a>
                         </div>
                     </div>
                 </footer>
+                <?php elseif ($post['type'] == 'post-text'):?>
+                    <div class="post__main">
+                    <p>
+                        <?=$post['content']?>
+                    </p>
+                    <div class="post-text__more-link-wrapper">
+                        <a class="post-text__more-link" href="#">Читать далее</a>
+                    </div>
+                </div>
+                <footer class="post__footer">
+                    <div class="post__author">
+                        <a class="post__author-link" href="#" title="Автор">
+                            <div class="post__avatar-wrapper">
+                                <img class="post__author-avatar" src=<?='img/'.$post['avatar']?>
+                                     alt="Аватар пользователя">
+                            </div>
+                            <div class="post__info">
+                                <b class="post__author-name"><?=$post['user_name']?></b>
+                                <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post__indicators">
+                        <div class="post__buttons">
+                            <a class="post__indicator post__indicator--likes button" href="#" title="Лайк">
+                                <svg class="post__indicator-icon" width="20" height="17">
+                                    <use xlink:href="#icon-heart"></use>
+                                </svg>
+                                <svg class="post__indicator-icon post__indicator-icon--like-active" width="20"
+                                     height="17">
+                                    <use xlink:href="#icon-heart-active"></use>
+                                </svg>
+                                <span>250</span>
+                                <span class="visually-hidden">количество лайков</span>
+                            </a>
+                            <a class="post__indicator post__indicator--comments button" href="#" title="Комментарии">
+                                <svg class="post__indicator-icon" width="19" height="17">
+                                    <use xlink:href="#icon-comment"></use>
+                                </svg>
+                                <span>25</span>
+                                <span class="visually-hidden">количество комментариев</span>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+                <?php elseif ($post['type'] == 'post-photo'):?>
+                <div class="post__main">
+                    <div class="post-photo__image-wrapper">
+                        <img src=<?='img/'.$post['content']?> alt="Фото от пользователя" width="360" height="240">
+                    </div>
+                </div>
+                <footer class="post__footer">
+                    <div class="post__author">
+                        <a class="post__author-link" href="#" title="Автор">
+                            <div class="post__avatar-wrapper">
+                                <img class="post__author-avatar" src=<?='img/'.$post['avatar']?>
+                                     alt="Аватар пользователя">
+                            </div>
+                            <div class="post__info">
+                                <b class="post__author-name"><?=$post['user_name']?></b>
+                                <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post__indicators">
+                        <div class="post__buttons">
+                            <a class="post__indicator post__indicator--likes button" href="#" title="Лайк">
+                                <svg class="post__indicator-icon" width="20" height="17">
+                                    <use xlink:href="#icon-heart"></use>
+                                </svg>
+                                <svg class="post__indicator-icon post__indicator-icon--like-active" width="20"
+                                     height="17">
+                                    <use xlink:href="#icon-heart-active"></use>
+                                </svg>
+                                <span>250</span>
+                                <span class="visually-hidden">количество лайков</span>
+                            </a>
+                            <a class="post__indicator post__indicator--comments button" href="#" title="Комментарии">
+                                <svg class="post__indicator-icon" width="19" height="17">
+                                    <use xlink:href="#icon-comment"></use>
+                                </svg>
+                                <span>25</span>
+                                <span class="visually-hidden">количество комментариев</span>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+                <?php elseif ($post['type'] == 'post-link'):?>
+                    <div class="post__main">
+                    <div class="post-link__wrapper">
+                        <a class="post-link__external" href=<?='http://'.$post['content']?> title="Перейти по ссылке">
+                            <div class="post-link__info-wrapper">
+                                <div class="post-link__info">
+                                    <h3><?=$post['caption']?></h3>
+                                </div>
+                            </div>
+                            <span><?=$post['content']?></span>
+                        </a>
+                    </div>
+                </div>
+                <footer class="post__footer">
+                    <div class="post__author">
+                        <a class="post__author-link" href="#" title="Автор">
+                            <div class="post__avatar-wrapper">
+                                <img class="post__author-avatar" src=<?='img/'.$post['avatar']?>
+                                     alt="Аватар пользователя">
+                            </div>
+                            <div class="post__info">
+                                <b class="post__author-name"><?=$post['content']?></b>
+                                <time class="post__time" datetime="2019-03-30">Месяц назад</time>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post__indicators">
+                        <div class="post__buttons">
+                            <a class="post__indicator post__indicator--likes button" href="#" title="Лайк">
+                                <svg class="post__indicator-icon" width="20" height="17">
+                                    <use xlink:href="#icon-heart"></use>
+                                </svg>
+                                <svg class="post__indicator-icon post__indicator-icon--like-active" width="20"
+                                     height="17">
+                                    <use xlink:href="#icon-heart-active"></use>
+                                </svg>
+                                <span>250</span>
+                                <span class="visually-hidden">количество лайков</span>
+                            </a>
+                            <a class="post__indicator post__indicator--comments button" href="#" title="Комментарии">
+                                <svg class="post__indicator-icon" width="19" height="17">
+                                    <use xlink:href="#icon-comment"></use>
+                                </svg>
+                                <span>25</span>
+                                <span class="visually-hidden">количество комментариев</span>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+                <?php endif;?>
+                </div>
             </article>
             <?php endforeach;?>
         </div>
