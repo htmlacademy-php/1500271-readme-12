@@ -1,12 +1,22 @@
 <?php
 $is_auth = rand(0, 1);
-/*function textcut($str, $len) {
+function textcut($str, $len) {
 if (strlen($str) > $len) {
-    $arr_str = explode(' ', $str);
-    
+    $i = 0;
+    $l = 0;
+    $arr_str = explode(" ", $str);
+    foreach ($arr_str as $s) {
+        if ($l < $len) {
+            $i += 1;
+            $l += strlen($s);
+        }
+    }
+    return implode(' ', array_slice($arr_str, 0,$i)).'...'.'<br><a class="post-text__more-link" href="#">Читать далее</a>';
+    }
+else{
+    return $str;
 }
 };
-if */
 $posts = [
     [
         'caption' => 'Цитата',
@@ -299,10 +309,9 @@ $user_name = 'Александр'; // укажите здесь ваше имя
                 <?php elseif ($post['type'] == 'post-text'):?>
                     <div class="post__main">
                     <p>
-                        <?=$post['content']?>
+                        <?=textcut($post['content'], 200)?>
                     </p>
                     <div class="post-text__more-link-wrapper">
-                        <a class="post-text__more-link" href="#">Читать далее</a>
                     </div>
                 </div>
                 <footer class="post__footer">
